@@ -1,0 +1,8 @@
+
+.okmenuColor1{
+	background-color: #4D3D3D;
+	color: #FFFFFF;
+}
+.saltolinea{
+	height:15px;
+}

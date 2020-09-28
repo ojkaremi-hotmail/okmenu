@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<meta http-equiv="Content-Security-Policy" content="
+		default-src *; 
+		style-src * 'unsafe-inline'; 
+		script-src * 'unsafe-inline'; 
+		media-src *; 
+		img-src * data:; 
+	" />
+
+	<!--meta http-equiv="Content-Security-Policy" content="
+		default-src * 'unsafe-inline'; 
+		style-src 'self' 'unsafe-inline'; 
+		media-src *" /-->
+
+	<!--meta http-equiv="Content-Security-Policy" content="default-src * 'self' cdvfile://*; style-src 'unsafe-inline' 'self' cdvfile://*; script-src 'self' 'unsafe-eval' cdvfile://*"-->  
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+    <style type="text/css">
+        body{
+            scroll:no;  
+        }
+        html,body, div, iframe{
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: hidden;  
+            margin: 0;
+            padding: 0;
+            background-color:#FAFAFA; 
+        }
+
+        #cargandoHTML {
+            margin: 0px;
+            padding: 0px; 
+            position: fixed;
+            right: 0px;
+            --margin-top:50px;   
+            --top: 150px; 
+            width: 100%;
+            height: 100%;   
+            background-color:#FAFAFA;
+            color: #1A2E47; 
+            z-index: 30001;   
+        } 
+
+    </style>
+    <title>OKMENU</title>
+</head>
+<script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+<body>
+<div id="cargandoHTML" onClick='$("#cargandoHTML").hide();'>
+		<!--img src="img/logo.png" style="margin-top:150px"-->
+		<center><img src="img/cargando.gif" style="margin:150px;width: 60px;"></center>
+</div>
+<iframe id="cargaAPP" frameborder="no" onload="content_finished_loading(this)"></iframe>
+<script>
+	function checkConn() {
+		$.ajax({
+			type: "HEAD",
+			url: "http://okmenu.es/js/app.okmenu.js?" + Date.now(),
+			//cache: false,
+			timeout: 5000, // sets timeout to 3 seconds
+			success: function(result){
+				$.getScript( "http://okmenu.es/js/app.okmenu.js?" + Date.now() , function( data, textStatus, jqxhr ) {
+				  //console.log( data ); // Data returned //console.log( textStatus ); // Success  //console.log( jqxhr.status ); // 200  //console.log( "Load was performed." );
+				});
+				/*
+				$.getScript( "http://okmenu.es/js/crypt.js?" + Date.now() , function( data, textStatus, jqxhr ) {
+				  //console.log( data ); // Data returned //console.log( textStatus ); // Success  //console.log( jqxhr.status ); // 200  //console.log( "Load was performed." );
+				});
+				*/
+				$.getScript( "http://okmenu.es/js/fn.okmenu.js?" + Date.now() , function( data, textStatus, jqxhr ) {
+				  //console.log( data ); // Data returned //console.log( textStatus ); // Success  //console.log( jqxhr.status ); // 200  //console.log( "Load was performed." );
+				});
+				
+			},
+			error: function (result) {
+				$(location).attr('href', 'error_cnx.html?e=1&' + Date.now() );
+	            return false;
+			}
+		});
+	}
+	checkConn();
+</script>
+
+
+
+<div id="cargandoHTML" onClick='$("#cargandoHTML").hide();'>
+    <center>
+		<!--img src="img/logo.png" style="margin-top:150px"-->
+		<br>
+		<!--img src="img/cargando.gif" style="margin:150px 0px" width='60px'-->
+		<img src="img/loading1.gif" style="margin:50px 0px" width='60px'>
+		<!--img src="img/loading2.gif" style="margin:50px 0px" width='60px'>
+		<img src="img/loading3.gif" style="margin:50px 0px" width='60px'-->
+	</center>
+</div>
+<iframe id="cargaAPP" frameborder="no" onload="content_finished_loading(this)"></iframe>
+</body>
+</html>
+<script>
+	var content_start_loading = function() { 
+		$("#cargandoHTML").show();
+	};
+	var content_finished_loading = function(iframe) {
+		$("#cargandoHTML").hide();
+		iframe.contentWindow.onunload = content_start_loading;
+	};
+	document.addEventListener('deviceready', onDeviceReady, false);
+</script>
+ 

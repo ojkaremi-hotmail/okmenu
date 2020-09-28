@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta http-equiv="Content-Security-Policy" content="
+		default-src *; 
+		style-src * 'unsafe-inline'; 
+		script-src * 'unsafe-inline'; 
+		media-src *; 
+		img-src * data:; 
+	" />
+	<!--link rel="stylesheet" type="text/css" href="css/index.css"-->
+    <style type="text/css">
+		body{
+			scroll:no;
+		}
+
+    </style>
+</head>
+<script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+
+<body>
+	
+	<div onClick="$(location).attr('href', 'index.html?' + Date.now() );" style="color:#4D3D3D;margin-top:150px;text-align:center;">
+		<img style="margin:30px 10px 10px 10px;font-size:24px; width: 90px;" src="img/alert.png" >
+		<div style="margin:30px 10px 10px 10px;font-size:24px;">
+			<b>&#161;No podemos ofrecerte un men&uacute;!</b> 
+			<br><span id="msgErr" style="font-size:16px;"></span>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/renew.js"></script>
+	<script type="text/javascript">
+		var paramstr = window.location.search.substr(1);
+		var paramarr = paramstr.split ("&");
+		var params = {};
+		var msg = "Error1 000: No dispone de conexión a internet, para volver a intentar pulse en la pantalla.";
+		for ( var i = 0; i < paramarr.length; i++) {
+			var tmparr = paramarr[i].split("=");
+			params[tmparr[0]] = tmparr[1];
+		}
+		if(params['e']==1)msg = "Error 00"+params['e']+" No dispone de conexión a internet, para volver a intentar pulse en la pantalla.";
+		if(params['e']==2 )msg = "Error 00"+params['e']+" No dispone de conexión a internet, para volver a intentar pulse en la pantalla.";
+		if(params['e']==3 )msg = "Error 00"+params['e']+" Empresa no definida.";
+
+		$('#msgErr').text( msg );
+	</script>
+</body>
+</html>
+

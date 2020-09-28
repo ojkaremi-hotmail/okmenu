@@ -1,0 +1,29 @@
+
+.okmenuColor1{
+	background-color: #4D3D3D;
+	color: #FFFFFF;
+}
+.saltolinea{
+	height:15px;
+}
+.diaSemana{
+    height: 30px;
+    width:30px;
+    border-radius:50%;
+    text-align: center;
+	vertical-align: middle;
+    display: table-cell;
+	font-weight: bold;
+	font-family: monospace;
+}
+.title{
+	text-align: left;
+	vertical-align: middle;
+	color: #4D3D3D;
+}
+td.dia{
+	width: 90px;
+}
+td.litDia{
+	vertical-align: middle;
+}
